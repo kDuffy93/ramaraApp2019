@@ -1,0 +1,16 @@
+<% include ../../partials/header.ejs %>
+
+<main class="container" style="margin-top:75px;">
+
+  <h1>Edit Department</h1>
+
+  <form method="post">
+    <div class="form-group">
+      <label for="departmentname" class="col-sm-2 control-label">Department Name: </label>
+      <input name="departmentname" id="departmentname" required value="<%= department.departmentname %>"/>
+    </div>
+
+    <button class="btn btn-success col-sm-offset-2">Save</button>
+  </form>
+
+<%include ../../partials/footer.ejs%>

@@ -1,0 +1,100 @@
+<% include ../partials/header.ejs %>
+
+<main class="container" style="margin-top:75px;">
+  <a href="contractors/add"><input type="button" class="btn btn-success"value="Add a new contractor"></input></a>
+  <table class="tablesorter table table-hover table-responsive table-bordered" id="filterTable">
+    <tr><th>Contractors</br>Name</th><th>Services</th><th>Contact Info</th><th>Agreement</br>Form</th><th>WSIB</th><th>Insurance</th><th>Edit</th><th>Delete</th></tr>
+    <!--logic to populate table -->
+    <% for (var i = 0; i < Contractors.length; i++) { %>
+      <tr id="<%= Contractors[i]._id %>">
+        <td class="active"  ><%= Contractors[i].contractorName %></td>
+
+
+        <td class="active">
+
+
+          <% for  (var x=0; x < Contractors[i].services.length; x++)
+          { %>
+            <%= Contractors[i].services[x] %> </br>
+            <% } %>
+
+          </td>
+
+
+          <td class="warning" >Tel: <%= Contractors[i].phoneNumber %> <br/>E-mail: <%= Contractors[i].email %></td>
+
+          <% if( (Contractors[i].caf).getUTCFullYear() >= (new Date()).getYear())
+          { %>
+            <td bgcolor="#00ff00">
+              <input class="bigCheck" type="checkbox" id="" checked="checked" onclick="return false;"/>
+              <% }
+              else{%>
+                <td bgcolor="#ff0000">
+                  <input class="bigCheck" type="checkbox" id=""  onclick="return false;"/>
+                  <%    }%>
+
+                </td>
+
+
+
+
+          <% if( Contractors[i].wsibExp > Date.now())
+          { %>
+            <td bgcolor="#00ff00">
+              <input class="bigCheck" type="checkbox" id="" checked="checked" onclick="return false;"/>
+              <% }
+              else{%>
+                <td bgcolor="#ff0000">
+                  <input class="bigCheck" type="checkbox" id=""  onclick="return false;"/>
+                  <%    }%>
+
+                </td>
+
+                <% if( Contractors[i].insurance > Date.now())
+                { %>
+                  <td  bgcolor="#00ff00">
+                    <input class="bigCheck" type="checkbox" id="" checked="checked" onclick="return false;"/>
+                    <% }
+                    else{%>
+                      <td bgcolor="#ff0000">
+                        <input class="bigCheck" type="checkbox" id=""  onclick="return false;"/>
+                        <%    }%>
+                      </td>
+                      <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+                      { %>
+                        <td class="info"><a href="/contractors/<%= Contractors[i]._id %>" class="btn btn-info">Edit</a></td>
+                        <% }
+                        else{%>
+                          <td class="info"><a href="#" class="btn btn-info" disabled>Edit</a></td>
+                          <%    }%>
+
+                          <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+                          { %>
+                            <td class="danger">  <input type="button" id="<%= Contractors[i]._id %>" onclick="deleteConfirmation(this.id)" class="btn btn-danger" value="Delete"/></td>
+                            <% }
+                            else{%>
+
+                              <td class="danger">  <input type="button" disabled /></td>
+
+                              <%    }%>
+                            </tr>
+                            <% } %>
+
+                          </table>
+
+
+                        </main>
+                        <script type="text/javascript">
+                        function deleteConfirmation(parentButtonID) {
+                          var result = confirm("Are you sure you want to delete this Contractor?");
+                          if (result) {
+                        console.log(parentButtonID);
+
+                         window.location.href = "/contractors/delete/"+parentButtonID;
+                          }
+                          else{
+                            return false;
+                          }
+                        }
+                      </script>
+                      <%include ../partials/footer.ejs%>

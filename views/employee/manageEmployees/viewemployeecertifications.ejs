@@ -1,0 +1,65 @@
+<% include ../../partials/header.ejs %>
+
+
+<div class="container-fluid" style="margin-top:75px;">
+
+ <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label">First Name: </label>
+            <input  id="firstname" name="firstname"  required type="text" readonly="true" value="<%= users.firstName %>" />
+        </div>
+         <div class="form-group">
+            <label for="surname" class="col-sm-2 control-label">Last Name: </label>
+            <input  id="surname" name="surname" readonly="true" required type="text"  value="<%= users.surName %>" />
+        </div>
+        <div class="form-group">
+            <label for="departmentname" class="col-sm-2 control-label">Department: </label>
+            <input  id="departmentname" name="departmentname" readonly="true" required type="text"  value="<%= users.departmentname %>" />
+        </div>
+
+
+<table class="table table-hover table-responsive table-bordered" id="filterTable">
+    <tr><th>Course</th><th>Taken On</th><th>Expiry</th><th>View Image</th><th>Edit</th><th>Delete</th></tr>
+<!-- logic attach the associated id's to the proper things in the table' -->
+    <% for (var i = 0; i < userCourses.length; i++) { %>
+        <tr>
+            <td class="active"><%= userCourses[i].coursename %></td>
+
+<td class="active"><%= userCourses[i].takenOn.toDateString() %></td>
+
+
+
+
+
+
+            <td class="active"><% if(userCourses[i].expiry != null){%><%= userCourses[i].expiry.toDateString()%><%} %></td>
+
+<td class="info"><a href="viewImage/<%= userCourses[i].photourl %>" class="btn btn-info">View Image</a></td>
+
+
+
+            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+            { %>
+<td class="info"><a href="/employeeDashboard/employeeCertifications/<%= users._id %>/<%= userCourses[i]._id %>" class="btn btn-info">Edit</a></td>
+            <% }
+            else{%>
+            <td class="info"><a href="#" class="btn btn-info" disabled>Edit</a></td>
+            <%    }%>
+
+               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+               { %>
+                 <td class="danger"><a href="delete/<%= userCourses[i]._id %>/<%=users._id%>" class="confirmation btn btn-danger">Delete</a></td>
+            <% }
+            else{%>
+            <td class="danger"><a href="#" class="confirmation btn btn-danger" disabled>Delete</a></td>
+
+            <%    }%>
+
+
+
+
+        </tr>
+    <% } %>
+
+</table>
+</div>
+<%include ../../partials/footer.ejs%>

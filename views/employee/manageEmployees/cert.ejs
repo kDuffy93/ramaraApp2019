@@ -1,0 +1,123 @@
+<% include ../../partials/header.ejs %>
+<script type="text/javascript">
+$(document).on('change','#filterddl', toggleCategorySearch(this));
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  let chkBox = document.getElementById("expiresCheckBox");
+  let expiresDiv = document.getElementById("expiresDiv");
+  if(chkBox.checked == true)
+  {
+    console.log("in if");
+    expiresDiv.style.display = "block";
+  }
+  else if(chkBox.checked == false)
+  {
+    console.log("in else");
+    expiresDiv.style.display = "none";
+  }
+});
+</script>
+
+<main class="container" style="margin-top:75px;" >
+
+  <h1>Add a New Employee Certificate</h1>
+
+  <form method="post" enctype="multipart/form-data">
+
+    <div class="form-group col-md-12">
+      <label for="firstname" class="col-sm-3 control-label">First Name: </label>
+      <input  id="firstname" name="firstname"  required type="text" readonly="true" value="<%= users.firstName %>" />
+    </div>
+    <div class="form-group col-md-12 ">
+      <label for="surname" class="col-sm-3 control-label">Last Name: </label>
+      <input  id="surname" name="surname" readonly="true" required type="text"  value="<%= users.surName %>" />
+    </div>
+
+
+    <div class="form-group col-md-12">
+      <label for="coursename" class="col-sm-3 control-label">Certification: </label>
+      <select name="coursename" id="coursename">
+        <!--  logic to populate the select dropdown   -->
+
+
+        <% for (var i = 0; i < courses.length; i++) { %>
+<% if(coursename != null){
+  if(courses[i].coursename == coursename){ %>
+    <option selected="selected" class="list-group-item list-group-item-action" value="<%= courses[i].coursename%>">
+      <%= courses[i].coursename %>
+    </option>
+   <% } %>
+  <% if(courses[i].coursename != coursename ){ %>
+    <option class="list-group-item list-group-item-action" value="<%= courses[i].coursename%>">
+      <%= courses[i].coursename %>
+    </option>
+   <% }
+}else{%>
+  <option class="list-group-item list-group-item-action" value="<%= courses[i].coursename%>">
+    <%= courses[i].coursename %>
+  </option>
+<% } } %>
+        </select>
+
+        <label for="filterddl">Search By Certificate:  </label>
+        <input type="text" style="width:225px;" placeholder="Filter Certificates Dropdown" onforminput="ddl()" onformchange="ddl()" onsubmit="ddl()" onkeyup="ddl()" onchange="ddl()" onkeypress="ddl()" oninput="ddl()" onkeydown="ddl()" id="filterddl"/>
+      </div>
+
+      <div class="form-group col-md-12">
+
+
+<% if(expires == false){ %>
+  <label for="expires" class="col-md-3 control-label">does this certificate expire? </label>
+  <input id="expiresCheckBox"  name="expiresCheckBox" class="col-md-2"  type="checkbox" onchange="expires()" >
+
+
+         <% }else{%>
+           <label for="expires" class="col-md-3 control-label">does this certificate expire? </label>
+           <input id="expiresCheckBox"  name="expiresCheckBox" class="col-md-2"  type="checkbox" checked onchange="expires()" >
+         <% } %>
+
+
+
+
+
+
+
+                <div id="expiresDiv" class="col-md-6" style="display:none">
+                  <label for="expiry" class="col-md-2 control-label">Expiry: </label>
+                  <input name="expiry" class="col-md-4" id="expiry"    type="date" placeholder="YYYY-MM-DD" min="2017-01-01" max="2050-01-01" value="<%= expiry %>" />
+                </div>
+
+              </div>
+
+
+  <div class="form-group col-md-12">
+    <label for="takenDate" class="col-md-3 control-label">Date the course was taken: </label>
+    <input name="takenDate" class="col-md-2" id="takenDate" required type="date" placeholder="YYYY-MM-DD" min="2017-01-01" max="2050-01-01" value="<%= takenOn %>" />
+  </div>
+
+
+<% if(edit == false){%>
+
+
+              <div class="form-group col-md-12">
+                <label for="certphoto" class="col-md-3 control-label">Upload a photo of the certificate:</label>
+                <input id="certphoto" class="col-md-3" type="file" name="certphoto" accept="image/*">
+              </div>
+<% }else{%>
+  <div class="form-group col-md-12">
+    <label for="certphoto" class="col-md-3 control-label">Upload a photo of the certificate:</label>
+    <input id="certphoto" class="col-md-3" type="file" name="certphoto" accept="image/*">
+  </div>
+<% }%>
+
+              <button class="btn btn-success col-md-2 col-md-offset-4">Save</button>
+            </form>
+
+          </main>
+
+
+
+          <%include ../../partials/footer.ejs%>

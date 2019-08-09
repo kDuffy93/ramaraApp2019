@@ -1,0 +1,89 @@
+<% include ../partials/header.ejs %>
+
+<main class="container" style="margin-top:75px;">
+
+<h1>Add a New Contractor</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="contractorName" class=" control-label">Contractor Name: </label>
+        <input name="contractorName" id="contractorName" value="<%= contractor.contractorName %>" />
+    </div>
+  <div class="form-group">
+  <label class="control-label">Services:</label>
+
+<div class="container" >
+<div id="servicesDiv" class="box-lg-4" style="box-sizing: border-box;width: 28%;   border: 3px solid black; padding:5px;">
+  <% for (var i = 0; i < contractor.services.length; i++) {
+    if(contractor.services != ""){%>
+
+
+
+     <label for="services" class=" control-label">service #<%= i+1 %>: </label>
+    <input name="services" id="services" value="<%= contractor.services[i] %>" />
+
+    <br/>
+      <%  }
+    if(contractor.services == "")
+    { %>
+      <label id="label<%= i+1 %>"for="services" class=" control-label">service #<%= i+1 %>: </label>
+     <input  id="services<%= i+1 %>" value="" />
+     <button type="button" class="btn btn-sm btn-success btn-xs" id="<%= i+1 %>" onclick="addNewService(this.id)" ><span class="glyphicon glyphicon-ok"></span> Add</button>
+     <br/>
+  <% break; }
+      %>
+      <% if(i == contractor.services.length-1){ %>
+
+
+
+        <label id="label<%= i+2 %>" for="services" class=" control-label">service #<%= i+2 %>: </label>
+       <input  id="services<%= i+2 %>" value="" />
+       <button type="button" class="btn btn-sm btn-success btn-xs" id="<%= i+2 %>" onclick="addNewService(this.id)"  ><span class="glyphicon glyphicon-ok"></span> Add</button>
+       <br/>
+      <%   } } %>
+</div>
+<div class="box-lg-8">
+</div>
+         </div>
+</div>
+
+         <div class="form-group">
+          <label for="tel" class=" control-label">Phone Number: </label>
+         <input name="tel" id="tel" value=" <%= contractor.phoneNumber %>" />
+              </div>
+
+
+
+  <div class="form-group">
+  <label for="email" class="control-label">Contractors E-Mail Address:</label>
+           <input id="email" type="email" name="email" value="<%= contractor.email %>"/>
+    </div>
+    <div class="form-group">
+    <label for="caf" class="control-label">Contractor Agreement Form</label>
+       <input id="caf" type="date"name="caf" value="<%= caf %>" />
+
+      </div>
+    <div class="form-group">
+    <label for="wsib" class="control-label">WSIB Clearance #</label>
+    <input id="wsib" type="text"name="wsib" value="<%= contractor.wsib %>"  />
+
+    <label for="wsibExp" class="control-label">Check Again On:</label>
+       <input id="wsibExp" type="date"name="wsibExp" value="<%= wsibExp %>" />
+
+
+      </div>
+
+      <div class="form-group">
+      <label for="insurance" class="control-label">Insurance Policy Expiry</label>
+         <input id="insurance" type="date"name="insurance" value="<%= insurance %>" />
+
+        </div>
+
+    <button class="btn btn-success col-sm-offset-2">Save</button>
+</form>
+
+</main>
+
+
+
+<%include ../partials/footer.ejs%>

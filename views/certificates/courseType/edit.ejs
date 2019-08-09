@@ -1,0 +1,19 @@
+<% include ../../partials/header.ejs %>
+
+<main class="container" style="margin-top:75px;">
+
+<h1>Add a New Certification Type</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="coursetype" class="col-sm-2 control-label">Certification Type: </label>
+        <input name="coursetype" id="coursetype" required value="<%= courseTypes.coursetype %>" />
+    </div>
+    <button class="btn btn-success col-sm-offset-2">Save</button>
+</form>
+
+</main>
+
+
+
+<%include ../../partials/footer.ejs%>

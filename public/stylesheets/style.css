@@ -1,0 +1,40 @@
+body{
+
+  padding-top: 150px;
+  padding-bottom: 200px;
+  margin-right:10px;
+}
+a.logo{
+  width:500px;
+  background: url("/images/logo_western_footer.png") no-repeat left center;
+}
+@-ms-viewport{
+  width: device-width;
+}
+a {
+  color: #00B7FF;
+}
+
+.buttonText{
+  color: #999999;
+}
+.navbar{
+  background-color: #052c4d;
+}
+#footer{
+    position:fixed;
+    height:20px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    margin-bottom:0px;
+}
+
+.bigCheck{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2.5); /* IE */
+  -moz-transform: scale(2.5); /* FF */
+  -webkit-transform: scale(2.5); /* Safari and Chrome */
+  -o-transform: scale(2.5); /* Opera */
+  padding: 10px;
+}

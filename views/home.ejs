@@ -1,0 +1,19 @@
+<!-- includes the partial file header.ejs -->
+<% include ./partials/header.ejs %>
+<!-- display the proper home page > user authenticated / no user -->
+<main class="container" style="margin-top:75px;">
+<div class="col-md-9 col-md-offset-1">
+ <% if (!user) { %>
+
+<h1> Welcome to the Township of Ramara App<h1>
+      <h2 class="col-md-offset-2"> Head over to the <a href="/login"> login </a> page to get started</h2>
+  </div>
+<% }
+else { %>
+<h1> Hi <%= user.firstName %>, Welcome to the Township of Ramara App<h1>
+          <h2> Head over to the <a href="/home"> Health & Safety Dashboard </a> to view employee certificates</h2>
+          </div>
+<% } %>
+</main>
+<!-- includes the partial file footer.ejs -->
+<%include ./partials/footer.ejs%>

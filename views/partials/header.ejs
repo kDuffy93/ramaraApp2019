@@ -1,0 +1,86 @@
+<!--Header Partial file
+Author's name: kyle Duffy
+web site name: Ramara health and safety
+file description: This file is the partial EJS file that can be required by other pages to use as the header. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <!--  import my custom css before bootstrap  -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Latest compiled and minified CSS
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    custom stylesheet-->
+    <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script src="/../../javascripts/clientScripts.js"></script>
+
+
+<!-- tablesorter widgets (optional) -->
+
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width"/>
+     <meta name=”HandheldFriendly” content=”true” />
+     <meta name=”MobileOptimized” content=”width=device-width” />
+
+
+
+  </head>
+  <body style="background-color:#90a4b5;">
+
+  <!--   This is the main navbar at the top of every page -->
+  <nav class="navbar navbar-fixed-top" style="max-height:190px;height:175px;min-width:300px;">
+    <div class="row">
+
+     <div class="col-xs-12" style="padding-top:10px;padding-left:20px;">
+ <a class="logo" href="/"><h4 class="logo"  style="color:white;">Township Of Ramara</h4> </a>     </div>
+    <div class="col-xs-12">
+
+      <!-- show only the login link if no user is authenticated -->
+      <% if (!user) { %>
+  <ul>
+
+
+      <li><a href="/login" style="min-height:60px; max-height:60px;min-width:86px;background-color:#052c4d;border-style: solid;border-width: 1px;border-color:#c4e3f3;"  class="col-sm-3 col-xs-offset-8 btn  list-group-item-action list-group-item-info">Login</a></li>
+  </div>
+  </ul>
+  <% }
+  <!-- show  proper nav panel if user is authenticated  -->
+  else { %>
+  <ul class="row" style="padding-top:10px;">
+
+      <a href="/home" class="col-xs-3 col-xs-offset-1 btn list-group-item-action " style="margin-right:10px; min-height:60px; max-height:60px;min-width:86px;background-color:#052c4d;border-style: solid;border-width: 1px;border-color:#c4e3f3;"> <h3 style="margin-top:10px;">Health & Safety</h3></a>
+       <a href="/contractors" class="col-xs-3 btn list-group-item-action " style="margin-right:10px; min-height:60px; max-height:60px; min-width:86px;background-color:#052c4d;border-style: solid;border-width: 1px;border-color:#c4e3f3;"><h3 style="margin-top:10px;">Contractors</h3></a>
+      <a href="/userManagment" class="col-xs-3 btn list-group-item-action" style="min-height:60px; max-height:60px;min-width:86px;background-color:#052c4d;border-style: solid;border-width: 1px;border-color:#c4e3f3;"><h3 style="margin-top:10px;">Admin</h3></a>
+     </ul>
+
+      </div>
+      <!-- style="padding-top:15px;"-->
+<div  class="col-xs-12">
+      <div onclick="window.history.back()" class="btn col-xs-2 navbar-fixed"style="background-color:#052c4d;border-style: solid;border-width: 1px;border-color:#c4e3f3;">
+ <p style="color:white;">Back</p>
+  </div>
+  <div style="background-color:#052c4d;" class=" col-xs-7"></div>
+
+  <div class="btn col-xs-3 navbar-fixed-right" style="background-color:#052c4d;border-style: solid;border-width: 1px;border-color:#c4e3f3;">
+  <a href="/logout">
+ <p style="color:white;margin-left:-7px;">Log Out</p></a>
+  </div>
+
+</div>
+
+
+  <% } %>
+
+
+
+
+
+
+</nav>

@@ -1,0 +1,41 @@
+<% include ../../partials/header.ejs %>
+<div class="container-fluid" style="margin-top:75px;">
+  <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+  { %>
+  <a href="department/add" class="btn btn-success" style="margin-bottom:10px;">Add a New Department</a>
+ <% }
+ else{%>
+
+ <%    }%>
+
+<table class="table table-inverse table-hover">
+    <tr><th>Department</th><th>Edit</th><th>Delete</th></tr>
+ <!--  logic to populate the  table  -->
+    <% for (var i = 0; i < departments.length; i++) { %>
+        <tr>
+            <td><%= departments[i].departmentname %></td>
+
+
+            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+            { %>
+            <td><a href="department/<%= departments[i]._id %>" class="btn btn-info">Edit</a></td>
+           <% }
+           else{%>
+            <td><a href="#" class="btn btn-info" disabled>Edit</a></td>
+           <%    }%>
+
+               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+               { %>
+            <td><a href="department/delete/<%= departments[i]._id %>" class="btn btn-danger confirmation">Delete</a></td>
+    <% }
+    else{%>
+      <td><a href="#" class="confirmation btn btn-danger" disabled>Delete</a></td>
+
+  <%    }%>
+
+        </tr>
+    <% } %>
+
+</table>
+</div>
+<%include ../../partials/footer.ejs%>

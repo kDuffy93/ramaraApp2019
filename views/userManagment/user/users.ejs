@@ -1,0 +1,77 @@
+<% include ../../partials/header.ejs %>
+
+<main class="container" style="margin-top:75px;">
+<div class="container-fluid" style="margin-top:50px;">
+  <div class="container-fluid" style="margin-bottom:30px;">
+<div id="filterDiv"style="padding-top:20px;" class="col-md-offset-4">
+    <div style="float:top;">
+    <label for="filterCategory">Enable/Disable Search By Certificate</label>
+
+    <input type="checkbox" id="enableCertificateSearch" onselect="toggleCategorySearch(this)" onclick="toggleCategorySearch(this)" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/>
+</div>
+<div style="float:left;" id="hideablediv">
+<label for="filterCategory">Search By Certificate:  </label>
+    <input type="text" style="width:225px;" placeholder="Search Valid certificates" onkeydown="filterTable()" onkeyup="filterWithCategory()" id="filterCategory"/>
+</div>
+
+<div style="float:right;">
+<label for="sortBy"> Field To Search By</label>
+<select id="sortBy" onchange="OnSelectedIndexChanged(this)">
+    <option value="First Names"> First Names </option>
+    <option value="Last Names"> Last Names </option>
+    <option value="Departments"> Departments </option>
+    </select>
+    <label for="filterText">Text to Search: </label>
+    <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeydown="filterTable()" onkeyup="filterTable()" id="filterText"/>
+    </div>
+</div>
+
+<% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+{ %>
+<a href="Users/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
+<% }
+else{%>
+
+<%    }%>
+
+</div>
+
+
+<table class="tablesorter table table-hover table-responsive table-bordered" id="filterTable">
+    <tr><th>First Name</th><th>Last Name</th><th>Department</th><th>Edit</th><th>Delete</th></tr>
+<!--logic to populate table -->
+    <% for (var i = 0; i < users.length; i++) { if(users[i]._id == "58f518ff43a6d491cc0a3274") {  continue }  %>
+        <tr on-touch="clickTable(this)" onclick="clickTable(this)"  id="<%= users[i]._id %>">
+            <td class="active"  ><%= users[i].firstName %></td>
+            <td class="active"><%= users[i].surName %></td>
+            <td class="warning" ><%= users[i].departmentname %></td>
+
+            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+            { %>
+            <td class="info"><a href="Users/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
+           <% }
+           else{%>
+            <td class="info"><a href="#" class="btn btn-info" disabled>Edit</a></td>
+           <%    }%>
+
+               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+               { %>
+            <td class="danger"><a href="Users/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
+    <% }
+    else{%>
+      <td class="danger"><a href="#" class="confirmation btn btn-danger" disabled>Delete</a></td>
+  <%    }%>
+        </tr>
+    <% } %>
+</table>
+
+</div>
+<script type="text/javascript">
+$(document).on("ready","#filterTable",function(){
+  $("tr").on("tap",clickTable(this));
+});
+
+</script>
+</main>
+
+<%include ../../partials/footer.ejs%>
