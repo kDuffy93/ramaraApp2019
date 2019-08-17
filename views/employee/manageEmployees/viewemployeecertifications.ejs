@@ -33,7 +33,13 @@
 
             <td class="active"><% if(userCourses[i].expiry != null){%><%= userCourses[i].expiry.toDateString()%><%} %></td>
 
-<td class="info"><a href="viewImage/<%= userCourses[i].photourl %>" class="btn btn-info">View Image</a></td>
+<% if(userCourses[i].photourl == 'NOPIC' || userCourses[i].photourl == 'false'){ %>
+  <td class="info"><a href="#" disabled class="btn btn-info">View Image</a></td>
+<% } else { %>
+  <td class="info"><a href="viewImage/<%= userCourses[i].photourl %>" class="btn btn-info">View Image</td>
+<% } %>
+
+
 
 
 

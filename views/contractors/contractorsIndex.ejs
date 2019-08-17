@@ -23,7 +23,7 @@
 
           <td class="warning" >Tel: <%= Contractors[i].phoneNumber %> <br/>E-mail: <%= Contractors[i].email %></td>
 
-          <% if( (Contractors[i].caf).getUTCFullYear() >= (new Date()).getYear())
+          <% console.log((Contractors[i].caf).getFullYear() + (new Date()).getFullYear());if( (Contractors[i].caf).getUTCFullYear() >= (new Date()).getFullYear())
           { %>
             <td bgcolor="#00ff00">
               <input class="bigCheck" type="checkbox" id="" checked="checked" onclick="return false;"/>

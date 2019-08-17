@@ -298,7 +298,7 @@ router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), funct
       console.log("before next()");
 
     }
-    if(typeof req.file != undefined)
+    if(typeof req.file !== 'undefined' && req.file.length > 0)
     {
       if(expirescheckboxVar == true){
         console.log("if******expirescheckboxVar == true){");
@@ -327,7 +327,7 @@ router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), funct
             });
           }
     }
-    if(typeof req.file == undefined)
+  else
     {
       if(expirescheckboxVar == true){
         console.log("if******expirescheckboxVar == true){");
@@ -340,7 +340,7 @@ router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), funct
             expires: expirescheckboxVar,
             expiry: req.body.expiry,
             takenOn:req.body.takenDate,
-
+  photourl: 'NOPIC'
 
 
         });}
@@ -353,7 +353,7 @@ router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), funct
               expires: expirescheckboxVar,
               expiry: '',
               takenOn:req.body.takenDate,
-
+  photourl: 'NOPIC'
 
             });
           }
@@ -533,13 +533,23 @@ router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), funct
 
 
     router.get('/viewEmployeeCertifications/viewImage/:photourl', function(req, res, next) {
-      let photourl = req.params.photourl;
 
+
+      if(req.params.photourl !== 'NOPIC')
+      {
+        let photourl = req.params.photourl;
+        res.render('employee/manageEmployees/viewCertificateImage', {
+          photourl: photourl,
+          title: 'View Image' , user: req.user
+        });
+      }
+      else {
+      
+
+
+      }
       //if theres a matchid id, load the edit page for that department
-      res.render('employee/manageEmployees/viewCertificateImage', {
-        photourl: photourl,
-        title: 'View Image' , user: req.user
-      });
+
     });
 
     module.exports = router;

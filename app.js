@@ -19,7 +19,7 @@ var index = require('./routes/index');
 var home = require('./routes/home')
 // include the 3 main routes to assign their '/' directory
 var employeeDashboard = require('./routes/employeeDashboard');
-var certificatesDashboard = require('./routes/certificatesDashboard');
+
 var expiringDashboard  = require('./routes/expiringDashboard');
 var userManagment  = require('./routes/userManagment');
 var contractors  = require('./routes/contractors');
@@ -72,7 +72,7 @@ app.use(passport.session());
 app.use('/', home);
 app.use('/home', index)
 app.use('/employeeDashboard', employeeDashboard);
-app.use('/certificatesDashboard', certificatesDashboard);
+
 app.use('/expiringDashboard', expiringDashboard);
 app.use('/userManagment', userManagment);
 app.use('/contractors', contractors);

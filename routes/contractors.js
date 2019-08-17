@@ -47,7 +47,21 @@ router.get('/', isLoggedIn,  function(req, res, next) {
       res.end(err);
       return;
     }
-
+    for(var c=0; c < allContractors.length; c++)
+    {
+      if(allContractors[c].insurance == null)
+      {
+        allContractors[c].insurance = '1980-01-01T00:00:00.000Z';
+      }
+      if( allContractors[c].caf == null)
+      {
+        allContractors[c].caf = '1980-01-01T00:00:00.000Z';
+      }
+      if( allContractors[c].wsibExp == null)
+      {
+        allContractors[c].wsibExp = '1980-01-01T00:00:00.000Z';
+      }
+    }
   res.render('contractors/contractorsIndex', { title: 'Contractors Index',
 
   user: req.user,
@@ -86,6 +100,7 @@ console.log(req.body.wsib);
 let contractorswsib = req.body.wsib;
 let contractorswsibdate = req.body.wsibExp;
 let contractorsinsurance = req.body.insurance;
+
 let contractorsAgreementForm = req.body.caf;
 
 
@@ -159,9 +174,33 @@ let contractorsinsurance;
          res.render('error');
          return;
       }
-      let insuranceLocal = contractor.insurance.toISOString().substr(0, 10);
-        let wsibExpLocal = contractor.wsibExp.toISOString().substr(0, 10);
-        let cafLocal = contractor.caf.toISOString().substr(0, 10);
+      let insuranceLocal;
+      try{
+       insuranceLocal = contractor.insurance.toISOString().substr(0, 10);
+      }
+      catch(err)
+      {
+        insuranceLocal = 0;
+      }
+      let wsibExpLocal;
+      try{
+        wsibExpLocal = contractor.wsibExp.toISOString().substr(0, 10);
+      }
+      catch(err)
+      {
+        wsibExpLocal = 0;
+      }
+      let cafLocal;
+      try{
+        cafLocal = contractor.caf.toISOString().substr(0, 10);
+      }
+      catch(err)
+      {
+        cafLocal = 0;
+      }
+
+
+
   console.log(contractor.services + contractor.services.length);
   console.log(contractor.wsibExp +"                         "+ new Date());
       res.render('contractors/edit', {
