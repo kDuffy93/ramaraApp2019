@@ -6,7 +6,10 @@ file description: This file is the partial EJS file that can be required by othe
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <% if(typeof title !== 'undefined'){%>
+      <title><%=title%></title>
+  <%  } %>
+
     <!--  import my custom css before bootstrap  -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <!-- Latest compiled and minified CSS
@@ -43,7 +46,7 @@ file description: This file is the partial EJS file that can be required by othe
     <div class="col-xs-12">
 
       <!-- show only the login link if no user is authenticated -->
-      <% if (!user) { %>
+      <% if (!user ) { %>
   <ul>
 
 

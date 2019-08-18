@@ -18,6 +18,7 @@ router.use( function(req, res, next) {
     req.session.messages =["You must be logged-in to view this page"];
     req.session.messages1 = ["please enter you're credentials below"];
       res.redirect('/login')
+      res.end();
   }
   next();
   });
@@ -86,6 +87,7 @@ router.post('/add', function(req, res, next) {
 console.log(req.body.contractorName);
   let contractorsName = req.body.contractorName;
     let contractorsservices = req.body.services;
+    try{
     for(var i=0; i < contractorsservices.length; i++)
     {
       if(contractorsservices[i] == ""|| contractorsservices[i] == '')
@@ -93,6 +95,10 @@ console.log(req.body.contractorName);
         contractorsservices.splice(i, 1);
       }
     }
+  }
+  catch(err){
+    contractorsservices = "";
+  }
   let contractorsphoneNumber = req.body.tel;
   let contractorsemail = req.body.email;
 //for wsib
@@ -222,12 +228,17 @@ let _id = req.params._id;
 let contractorsName = req.body.contractorName;
 let contractorsservices = req.body.services;
 console.log(contractorsservices);
+try{
 for(var i=0; i < contractorsservices.length; i++)
 {
   if(contractorsservices[i] == ""|| contractorsservices[i] == '')
   {
     contractorsservices.splice(i, 1);
   }
+}
+}
+catch(err){
+  contractorsservices = "";
 }
 let contractorsphoneNumber = req.body.tel;
 let contractorsemail = req.body.email;

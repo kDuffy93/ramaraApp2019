@@ -105,30 +105,13 @@ router.get('/login', function(req, res, next) {
 
 
 // post @ login
-router.post('/login',usernameToLowerCase, /* function(req, res, next) {
-  returnURL = req.body.returnURL;
- console.log(returnURL+ "from post");
-if(returnURL)
-{
-
-  console.log(returnURL+ "from if");
-  passport.authenticate('local', {
-  successRedirect: '/' + returnURL ,
-  failureRedirect: '/login',
-    failureMessage: 'Invalid Login'
-
-  })
-
-}
-else
-{
-
-  console.log(returnURL + "from else");*/
+router.post('/login',usernameToLowerCase,
   passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
     failureMessage: 'Invalid Login'
-  }));
+  })
+);
 //}
 
 //});

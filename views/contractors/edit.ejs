@@ -7,7 +7,7 @@
 <form method="post">
     <div class="form-group">
         <label for="contractorName" class=" control-label">Contractor Name: </label>
-        <input name="contractorName" id="contractorName" value="<%= contractor.contractorName %>" />
+        <input name="contractorName" required id="contractorName" value="<%= contractor.contractorName %>" />
     </div>
   <div class="form-group">
   <label class="control-label">Services:</label>
@@ -65,7 +65,7 @@
       </div>
     <div class="form-group">
     <label for="wsib" class="control-label">WSIB Clearance #</label>
-    <input id="wsib" type="text"name="wsib" value="<%= contractor.wsib %>"  />
+    <input id="wsib" type="text" minlength="12" name="wsib" size="12" maxlength="12"  value="<%= contractor.wsib %>"  />
 
     <label for="wsibExp" class="control-label">Check Again On:</label>
        <input id="wsibExp" type="date"name="wsibExp" value="<%= wsibExp %>" />

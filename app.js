@@ -99,12 +99,21 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  console.log(err.message);
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+
   // render the error page
   res.status(err.status || 500);
+
+
   res.render('error', {
-    title: "Error"
+    user: req.user,
+    title: "Error",
+
+
   });
+
 });
 const S3_BUCKET = 'ramara-township-storage';
 module.exports = app;

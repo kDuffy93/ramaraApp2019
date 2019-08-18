@@ -7,7 +7,7 @@
 <form method="post">
     <div class="form-group">
         <label for="contractorName" class=" control-label">Contractor Name: </label>
-        <input name="contractorName" id="contractorName"  />
+        <input name="contractorName"  id="contractorName"  />
     </div>
 
 
@@ -59,7 +59,7 @@
 
     <div class="form-group">
     <label for="wsib" class="control-label">WSIB Clearance #</label>
-             <input id="wsib" type="text"  name="wsib" />
+             <input id="wsib" type="text" pattern="^(?=.*\d)(?=.*[a-zA-Z0-9])(?!.*\s!@#$%^&*()-_=+[{]}\|;:'<./>?`~]).*$" minlength="12" size="12" maxlength="12" name="wsib" />
 
            </br>   <label for="wsibExp" class="control-label">Check Again On:</label>
                       <input id="wsibExp" type="date" name="wsibExp" />
