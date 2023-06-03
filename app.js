@@ -17,6 +17,7 @@ let localStrategy = require('passport-local').Strategy;
 let user = require('./models/users');
 var index = require('./routes/index');
 var home = require('./routes/home')
+const MongoClient = require('mongodb').MongoClient;
 // include the 3 main routes to assign their '/' directory
 var employeeDashboard = require('./routes/employeeDashboard');
 
@@ -37,12 +38,19 @@ let s3 = new aws.S3({
 var app = express();
 
 // require mongoose, had to include the promise as per > cmd @warn
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-var conn = mongoose.connection;
-//connect to the database
-var globals = require('./config/globals');
-conn.open(globals.db);
+
+const url = 'mongodb://74.116.223.113:27017/ramaraApp'; // Replace with your database name
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to the database');
+    // Further code and database operations can be performed here
+  })
+  .catch((error) => {
+    console.error('Failed to connect to the database:', error);
+  });
+
 
 // set ejs as the view engine and '/' folder for views
 app.set('views', path.join(__dirname, 'views'));

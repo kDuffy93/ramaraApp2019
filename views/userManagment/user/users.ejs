@@ -26,7 +26,7 @@
     </div>
 </div>
 
-<% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+<% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "61bb44455668037d34d0f36b")
 { %>
 <a href="Users/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
 <% }
@@ -46,7 +46,7 @@ else{%>
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
 
-            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "61bb44455668037d34d0f36b")
             { %>
             <td class="info"><a href="Users/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
            <% }
@@ -54,7 +54,7 @@ else{%>
             <td class="info"><a href="#" class="btn btn-info" disabled>Edit</a></td>
            <%    }%>
 
-               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "61bb44455668037d34d0f36b")
                { %>
             <td class="danger"><a href="Users/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
     <% }

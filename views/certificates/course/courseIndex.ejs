@@ -2,7 +2,7 @@
 
 <div class="container-fluid" style="margin-top:75px;">
 
-  <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+  <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "61bb44455668037d34d0f36b")
   { %>
     <a href="course/add" class="btn btn-success" style="margin-bottom:10px;">Add a New Certification</a>
 
@@ -21,14 +21,14 @@
             <td><%= courses[i].coursetype %></td>
 
 
-            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+            <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "61bb44455668037d34d0f36b")
             { %>
   <td><a href="course/<%= courses[i]._id %>" class="btn btn-info">Edit</a></td>            <% }
             else{%>
             <td><a href="#" class="btn btn-info" disabled>Edit</a></td>
             <%    }%>
 
-               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+               <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "61bb44455668037d34d0f36b")
                { %>
                  <td><a  href="course/delete/<%= courses[i]._id %>" class="btn btn-danger confirmation">Delete</a></td>
             <% }

@@ -20,7 +20,7 @@ router.get('/',   function(req, res, next) {
       res.redirect('/firstlogin')
 
     }
-    if(req.user._id == "5b1a8cee8d7ed00020a30a4f" || req.user._id == "58f518ff43a6d491cc0a3274")
+    if(req.user._id == "5b1a8cee8d7ed00020a30a4f" || req.user._id == "61bb44455668037d34d0f36b")
     {
       res.render('home', { title: 'Ramara Certificates Home',
       user: req.user});
